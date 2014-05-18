@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 import objetos.Equipe;
 import objetos.Equipes;
-import bin.KeplerSrv;
-
+import principal.KeplerSrv;
 import telas.ControladoraDeTelas;
 import telas.TelaDeChat;
 

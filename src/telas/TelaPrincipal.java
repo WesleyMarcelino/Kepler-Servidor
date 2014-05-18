@@ -18,10 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import bin.KeplerSrv;
-
 import objetos.Equipes;
 import objetos.Industrias;
+import principal.KeplerSrv;
 import servidor.Servidor;
 
 public class TelaPrincipal extends JFrame {
