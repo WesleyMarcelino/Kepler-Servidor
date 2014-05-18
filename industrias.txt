@@ -1,0 +1,3 @@
+ID0NOME0Industria de lixoENDERECO0Rua Florida, N° 16, CEP : 06363-300, Bairro :Vila CristinaSTATUS0PENDENTE DE VERIFICAÇÃO;
+ID2NOME2Industria de madeiraENDERECO2Rua Florida, N° 16, CEP : 06363-300, Bairro :Vila CristinaSTATUS2PENDENTE DE VERIFICAÇÃO;
+ID3NOME3Industria de AguaENDERECO3Rua Florida, N° 16, CEP : 06363-300, Bairro :Vila CristinaSTATUS3PENDENTE DE VERIFICAÇÃO;
