@@ -16,7 +16,7 @@ import telas.TelaDeChat;
 public class Servidor implements Runnable {
     private	ServerSocket servidor ;
 	private Socket cliente;
-	private Recebidor recebidor;
+	private Recebedor recebidor;
 	private static List<PrintStream> clientes;
 
 	
@@ -44,7 +44,7 @@ public class Servidor implements Runnable {
 	}
 	
 	public void esperaMensagem(){
-		recebidor = new Recebidor(cliente);
+		recebidor = new Recebedor(cliente);
 		Thread recebimento = new Thread(recebidor);
 		recebimento.start();
 		
@@ -74,9 +74,8 @@ public class Servidor implements Runnable {
 		String ip = cliente.getInetAddress().getHostAddress().toString();
 		Scanner scanner = new Scanner(cliente.getInputStream());
 		String auxiliar = scanner.nextLine();
-		String aux[] = auxiliar.split(":");
-		id = Long.parseLong(aux[0]);
-        nome = aux[1];
+	    nome = auxiliar;
+	    id=0;
 		Equipe equipe = new Equipe(id,nome, host, ip);
 		Equipes.adicionarEquipe(equipe);
 		System.out.println(" DEBUG - EQUIPE MONTADA : "+id+nome+host+ip);

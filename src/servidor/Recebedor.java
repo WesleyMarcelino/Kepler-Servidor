@@ -10,11 +10,11 @@ import principal.KeplerSrv;
 import telas.ControladoraDeTelas;
 import telas.TelaDeChat;
 
-public class Recebidor implements Runnable {
+public class Recebedor implements Runnable {
 	private  static String mensagem;
 	private Socket cliente;
 	private Equipe equipe;
-	public Recebidor(Socket cliente) {
+	public Recebedor(Socket cliente) {
     this.cliente = cliente;
  
    }
@@ -54,7 +54,7 @@ public static String getMensagem() {
 
 
 public static void setMensagem(String mensagem) {
-	Recebidor.mensagem = mensagem;
+	Recebedor.mensagem = mensagem;
 }
 
 

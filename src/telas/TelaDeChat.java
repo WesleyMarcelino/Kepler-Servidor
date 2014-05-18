@@ -23,7 +23,7 @@ import javax.swing.JTextPane;
 import objetos.Equipe;
 import principal.KeplerSrv;
 import servidor.Enviador;
-import servidor.Recebidor;
+import servidor.Recebedor;
 import servidor.Servidor;
 
 public class TelaDeChat extends JFrame implements Runnable {
@@ -39,7 +39,7 @@ public class TelaDeChat extends JFrame implements Runnable {
 	   private static JTextArea conversas = new JTextArea();
 	   // private JTextField envioPeloServidor;
 	  // private JTextField recebidoPeloServidor;
-	   private Recebidor recebidor;
+	   private Recebedor recebidor;
 	   private String origem;
 	   private String mensagem;
 	   private static String mensagemDoCliente = null;
