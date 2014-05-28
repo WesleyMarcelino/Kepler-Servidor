@@ -6,18 +6,18 @@ public class Equipe {
 	private String ip;
 	private String host;
 
-
-	public Equipe(long id , String nome, String ip, String host){
+	public Equipe(long id, String nome, String ip, String host) {
 		this.id = id;
 		this.nome = nome;
 		this.ip = ip;
 		this.host = host;
 	}
-	
-	public String paraBotao(){
-		return ("<html>Equipe : "+this.getNome()+"<br/>Host : "+this.getHost()+"</html");
-		}
-	
+
+	public String paraBotao() {
+		return ("<html>Equipe : " + this.getNome() + "<br/>Host : "
+				+ this.getHost() + "</html");
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -26,7 +26,6 @@ public class Equipe {
 		this.id = id;
 	}
 
-	
 	public String getNome() {
 		return nome;
 	}
@@ -51,8 +50,8 @@ public class Equipe {
 		this.host = host;
 	}
 
-	public String toString(){
-		return (nome); 
+	public String toString() {
+		return (nome);
 	}
 
 }

@@ -10,13 +10,13 @@ import servidor.Servidor;
 public class ListaTelaDeChat {
 	private static ArrayList<TelaDeChat> telasDeChat = new ArrayList<TelaDeChat>();
 
-	public static void adicionarTelaDeChat(long id , Equipe equipe ,Socket cliente , Servidor servidor) throws IOException{
-	TelaDeChat telaDeChat = new TelaDeChat(equipe,cliente.getInputStream(),servidor);
-    telasDeChat.add(telaDeChat);
-    }
-	
-	
-	
+	public static void adicionarTelaDeChat(long id, Equipe equipe,
+			Socket cliente, Servidor servidor) throws IOException {
+		TelaDeChat telaDeChat = new TelaDeChat(equipe,
+				cliente.getInputStream(), servidor);
+		telasDeChat.add(telaDeChat);
+	}
+
 	public static ArrayList<TelaDeChat> getTelasDeChat() {
 		return telasDeChat;
 	}

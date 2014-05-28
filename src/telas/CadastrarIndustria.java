@@ -49,34 +49,33 @@ public class CadastrarIndustria extends JFrame {
 	private JPanel rodape;
 	private JTextField textoRodape;
 	private Font fonteTextoRodape;
-	
-	
-	
-	public CadastrarIndustria(){
+
+	public CadastrarIndustria() {
 		BorderLayout layoutTelaInicial = new BorderLayout();
-		this.setTitle(Informacoes.getNomedoprograma()+" "+Informacoes.getVersao());
+		this.setTitle(Informacoes.getNomedoprograma() + " "
+				+ Informacoes.getVersao());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setSize(600,400);
+		this.setSize(600, 400);
 		this.setResizable(false);
 		this.add(Titulo(), layoutTelaInicial.NORTH);
 		this.add(Formulario(), layoutTelaInicial.CENTER);
 		this.add(Rodape(), layoutTelaInicial.SOUTH);
 		this.setLocationRelativeTo(null);
-		
+
 	}
-	
-	private JPanel Titulo(){ 
+
+	private JPanel Titulo() {
 		fonteTextoDoTitulo = new Font("Calibri", Font.PLAIN, 24);
 		titulo = new JPanel();
 		textoDoTitulo = new JLabel();
 		textoDoTitulo.setFont(fonteTextoDoTitulo);
 		textoDoTitulo.setText("Cadastro de industria");
-	    titulo.add(textoDoTitulo);
-	    return titulo;
+		titulo.add(textoDoTitulo);
+		return titulo;
 	}
-	
-	private JPanel Formulario(){
-		GridLayout layoutFormulario = new GridLayout(8,3);
+
+	private JPanel Formulario() {
+		GridLayout layoutFormulario = new GridLayout(8, 3);
 		formulario = new JPanel();
 		formulario.setLayout(layoutFormulario);
 		labelIndustria = new JLabel();
@@ -109,8 +108,8 @@ public class CadastrarIndustria extends JFrame {
 		formulario.add(labelBairro);
 		formulario.add(bairro);
 		selecaoDeStatus = new JComboBox<Object>();
-		for (int i = 0; i < StatusLista.getEstados().size(); i++){
-		selecaoDeStatus.addItem(StatusLista.getEstados().get(i));
+		for (int i = 0; i < StatusLista.getEstados().size(); i++) {
+			selecaoDeStatus.addItem(StatusLista.getEstados().get(i));
 		}
 		labelStatus = new JLabel();
 		labelStatus.setText("Status : ");
@@ -118,58 +117,61 @@ public class CadastrarIndustria extends JFrame {
 		formulario.add(selecaoDeStatus);
 		botaoOk = new JButton();
 		botaoOk.setText("OK");
-		botaoOk.addActionListener( new ActionListener() {  
-		long idAux ;  
-		public void actionPerformed(ActionEvent e) {
-		System.out.println("Tamanho da lista de industrias atual"+Industrias.getIndustrias().size());
-		if (Industrias.getIndustrias().size()==0){
-            idAux=0;	
-          }
-        else {
-           idAux = Industrias.getIndustrias().size();
-           System.out.println("tamanho diferente de 0, idAux é igual "+idAux);
-        }
-        	String nomeAux = nomeIndustria.getText();
-            String ruaAux = rua.getText();
-            String numeroAux = numero.getText();
-            String bairroAux = bairro.getText();
-            String cepAux = cep.getText();
-            String statusAux = selecaoDeStatus.getSelectedItem().toString();
-            String enderecoAux = ruaAux +", N° "+ numeroAux +", CEP : " + cepAux +", Bairro :"+ bairroAux;
-            Industria industriaAux = new Industria(idAux, nomeAux, enderecoAux, statusAux);
-            IndustriaM.inserirIndustria(industriaAux);
-            IndustriaTxt.lerIndustriaTxt(0); //aqui na verdade estou lendo a lista inteira 
-            ControladoraDeTelas.esconderCadastrarIndustrias(); 
-            ControladoraDeTelas.esconderTelaPrincipal();
-            try {
-				ControladoraDeTelas.mostrarTelaPrincipal();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		botaoOk.addActionListener(new ActionListener() {
+			long idAux;
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Tamanho da lista de industrias atual"
+						+ Industrias.getIndustrias().size());
+				if (Industrias.getIndustrias().size() == 0) {
+					idAux = 0;
+				} else {
+					idAux = Industrias.getIndustrias().size();
+					System.out.println("tamanho diferente de 0, idAux é igual "
+							+ idAux);
+				}
+				String nomeAux = nomeIndustria.getText();
+				String ruaAux = rua.getText();
+				String numeroAux = numero.getText();
+				String bairroAux = bairro.getText();
+				String cepAux = cep.getText();
+				String statusAux = selecaoDeStatus.getSelectedItem().toString();
+				String enderecoAux = ruaAux + ", N° " + numeroAux + ", CEP : "
+						+ cepAux + ", Bairro :" + bairroAux;
+				Industria industriaAux = new Industria(idAux, nomeAux,
+						enderecoAux, statusAux);
+				IndustriaM.inserirIndustria(industriaAux);
+				IndustriaTxt.lerIndustriaTxt(0); // aqui na verdade estou lendo
+													// a lista inteira
+				ControladoraDeTelas.esconderCadastrarIndustrias();
+				ControladoraDeTelas.esconderTelaPrincipal();
+				try {
+					ControladoraDeTelas.mostrarTelaPrincipal();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
-               
-            }  
-		});  
-		
-		
+		});
+
 		botaoCancelar = new JButton();
 		botaoCancelar.setText("Cancelar");
-		botaoCancelar.addActionListener( new ActionListener() {  
-            public void actionPerformed(ActionEvent e) {
-            	ControladoraDeTelas.esconderCadastrarIndustrias();
-            	System.out.println("esconderCadastrarIndustrias");
-            
-            }  
-		});  
-		
+		botaoCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladoraDeTelas.esconderCadastrarIndustrias();
+				System.out.println("esconderCadastrarIndustrias");
+
+			}
+		});
+
 		formulario.add(botaoOk);
 		formulario.add(botaoCancelar);
-		
-		return formulario ;
-	}
-	
 
-	private JPanel Rodape(){
+		return formulario;
+	}
+
+	private JPanel Rodape() {
 		rodape = new JPanel();
 		textoRodape = new JTextField();
 		textoRodape.setText(Informacoes.getNomedoprograma());
@@ -179,9 +181,5 @@ public class CadastrarIndustria extends JFrame {
 		rodape.add(textoRodape);
 		return rodape;
 	}
-	
-	
-	
-	
-	
+
 }

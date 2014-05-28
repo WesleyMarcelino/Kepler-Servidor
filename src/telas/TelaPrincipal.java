@@ -39,91 +39,93 @@ public class TelaPrincipal extends JFrame {
 	private JButton[] botoesIndustrias;
 	private JButton[] botoesEquipes;
 	private JButton adicionarIndustrias;
-	
-	public TelaPrincipal() throws IOException{
+
+	public TelaPrincipal() throws IOException {
 		BorderLayout layoutTelaPrincipal = new BorderLayout();
-		this.setTitle(Informacoes.getNomedoprograma()+" "+Informacoes.getVersao());
+		this.setTitle(Informacoes.getNomedoprograma() + " "
+				+ Informacoes.getVersao());
 		this.setLayout(layoutTelaPrincipal);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(800,600);
+		this.setSize(800, 600);
 		this.setResizable(false);
-		this.setLocationRelativeTo(null);		
+		this.setLocationRelativeTo(null);
 		this.add(Titulo(), layoutTelaPrincipal.NORTH);
-		this.add(Rodape(),layoutTelaPrincipal.SOUTH);
-		this.add(Industrias(),layoutTelaPrincipal.WEST);
+		this.add(Rodape(), layoutTelaPrincipal.SOUTH);
+		this.add(Industrias(), layoutTelaPrincipal.WEST);
 		this.add(Chat(), layoutTelaPrincipal.CENTER);
 	}
-	
-	
-	private JPanel Industrias(){
-		GridLayout layoutIndustrias = new GridLayout(10,1);
+
+	private JPanel Industrias() {
+		GridLayout layoutIndustrias = new GridLayout(10, 1);
 		industria = new JPanel();
 		industria.setLayout(layoutIndustrias);
 		tituloIndustrias = new JLabel();
 		tituloIndustrias.setText("Industrias cadastradas : ");
 		adicionarIndustrias = new JButton();
-		adicionarIndustrias.addActionListener( new ActionListener() {  
-            public void actionPerformed(ActionEvent e) {
-            	System.out.println("clicou");
-             ControladoraDeTelas.mostrarCadastrarIndustrias();
-            }  
-   }); 
+		adicionarIndustrias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("clicou");
+				ControladoraDeTelas.mostrarCadastrarIndustrias();
+			}
+		});
 		adicionarIndustrias.setText("Adicionar Industria");
-		
+
 		botoesIndustrias = new JButton[Industrias.getIndustrias().size()];
 		industria.add(tituloIndustrias);
-		for (int i = 0; i < Industrias.getIndustrias().size(); i++){
+		for (int i = 0; i < Industrias.getIndustrias().size(); i++) {
 			criarBotoes(i);
-	    	industria.add(botoesIndustrias[i]);
+			industria.add(botoesIndustrias[i]);
 		}
-			industria.add(adicionarIndustrias);
+		industria.add(adicionarIndustrias);
 		return industria;
 	}
 
 	private JButton criarBotoes(final int index) {
 		botoesIndustrias[index] = new JButton();
-		botoesIndustrias[index].setText(Industrias.getIndustrias().get(index).paraBotao());
-		botoesIndustrias[index].addActionListener( new ActionListener() {  
-	      public void actionPerformed(ActionEvent e) {
-	     System.out.println("debug : Clicou na Industria :" +Industrias.getIndustrias().get(index).getNome());
-	     ControladoraDeTelas.mostrarTelaIndustria(Industrias.getIndustrias().get(index));
-	       }  
-		}); 
+		botoesIndustrias[index].setText(Industrias.getIndustrias().get(index)
+				.paraBotao());
+		botoesIndustrias[index].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("debug : Clicou na Industria :"
+						+ Industrias.getIndustrias().get(index).getNome());
+				ControladoraDeTelas.mostrarTelaIndustria(Industrias
+						.getIndustrias().get(index));
+			}
+		});
 		return botoesIndustrias[index];
 	}
-	private JButton criarBotoesEquipes (final int index) throws IOException {
+
+	private JButton criarBotoesEquipes(final int index) throws IOException {
 		botoesEquipes[index] = new JButton();
 		KeplerSrv.getS().iniciaChat(Equipes.getEquipes().get(index));
-		botoesEquipes[index].setText(Equipes.getEquipes().get(index).paraBotao());
-		botoesEquipes[index].addActionListener( new ActionListener() {  
-	      public void actionPerformed(ActionEvent e) {
-	    	 try {
-				KeplerSrv.getS().mostraChat(Equipes.getEquipes().get(index));
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		botoesEquipes[index].setText(Equipes.getEquipes().get(index)
+				.paraBotao());
+		botoesEquipes[index].addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					KeplerSrv.getS()
+							.mostraChat(Equipes.getEquipes().get(index));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-	      }  
-		}); 
+		});
 		return botoesEquipes[index];
 	}
-	
-	
-	
-	
-	private JPanel Titulo(){ 
+
+	private JPanel Titulo() {
 		fonteTextoDoTitulo = new Font("Calibri", Font.PLAIN, 24);
 		titulo = new JPanel();
 		textoDoTitulo = new JLabel();
 		textoDoTitulo.setFont(fonteTextoDoTitulo);
 		textoDoTitulo.setText("Secretaria de Estado do Meio Ambiente");
-	    titulo.add(textoDoTitulo);
-	    return titulo;
+		titulo.add(textoDoTitulo);
+		return titulo;
 	}
-	
-	
-	private JPanel Chat() throws IOException{
-		GridLayout layoutChat = new GridLayout(10,1);
+
+	private JPanel Chat() throws IOException {
+		GridLayout layoutChat = new GridLayout(10, 1);
 		chat = new JPanel();
 		chat.setLayout(layoutChat);
 		fontTituloChat = new Font("Calibri", Font.PLAIN, 24);
@@ -131,30 +133,21 @@ public class TelaPrincipal extends JFrame {
 		tituloChat.setText("Equipes conectadas : ");
 		chat.add(tituloChat);
 		botoesEquipes = new JButton[Equipes.getEquipes().size()];
-		for (int i = 0; i < Equipes.getEquipes().size(); i++){
-		criarBotoesEquipes(i);
-		chat.add(botoesEquipes[i]);
+		for (int i = 0; i < Equipes.getEquipes().size(); i++) {
+			criarBotoesEquipes(i);
+			chat.add(botoesEquipes[i]);
 		}
-		return chat;	
+		return chat;
 	}
-	
-	
-	
-	
-	public JPanel Rodape(){
+
+	public JPanel Rodape() {
 		rodape = new JPanel();
 		textoRodape = new JTextField();
 		textoRodape.setEditable(false);
-		textoRodape.setText("Desenvolvido por :" +Informacoes.getDesenvolvedores());
+		textoRodape.setText("Desenvolvido por :"
+				+ Informacoes.getDesenvolvedores());
 		rodape.add(textoRodape);
-		return rodape;		
+		return rodape;
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

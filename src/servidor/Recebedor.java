@@ -11,52 +11,48 @@ import telas.ControladoraDeTelas;
 import telas.TelaDeChat;
 
 public class Recebedor implements Runnable {
-	private  static String mensagem;
+	private static String mensagem;
 	private Socket cliente;
 	private Equipe equipe;
+
 	public Recebedor(Socket cliente) {
-    this.cliente = cliente;
- 
-   }
-   
+		this.cliente = cliente;
 
-public void recebeMensagem(Equipe equipe, Socket cliente) throws IOException{
-	 System.out.println("RUN DE RECEBER MENSAGEM ");
-	 Scanner s = new Scanner(cliente.getInputStream());
-     while (s.hasNextLine()) {
-         if (ControladoraDeTelas.getTelaDeChat().isVisible() == false ){
-             System.out.println("tela não visivel");
-             KeplerSrv.getS().mostraChat(equipe); //temporario
-             }	 
-     mensagem = s.nextLine();
-     TelaDeChat.setMensagemDoCliente(mensagem);
-     System.out.println("mensagem da tela"+TelaDeChat.getMensagemDoCliente());
-      }
-       s.close();
-}
-
-
-
-public void run() {
-	try {
-		recebeMensagem(equipe, cliente);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
 	}
 
+	public void recebeMensagem(Equipe equipe, Socket cliente)
+			throws IOException {
+		System.out.println("RUN DE RECEBER MENSAGEM ");
+		Scanner s = new Scanner(cliente.getInputStream());
+		while (s.hasNextLine()) {
+			if (ControladoraDeTelas.getTelaDeChat().isVisible() == false) {
+				System.out.println("tela não visivel");
+				KeplerSrv.getS().mostraChat(equipe); // temporario
+			}
+			mensagem = s.nextLine();
+			TelaDeChat.setMensagemDoCliente(mensagem);
+			System.out.println("mensagem da tela"
+					+ TelaDeChat.getMensagemDoCliente());
+		}
+		s.close();
+	}
 
-public static String getMensagem() {
-	return mensagem;
-}
+	public void run() {
+		try {
+			recebeMensagem(equipe, cliente);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+	}
 
-public static void setMensagem(String mensagem) {
-	Recebedor.mensagem = mensagem;
-}
+	public static String getMensagem() {
+		return mensagem;
+	}
 
+	public static void setMensagem(String mensagem) {
+		Recebedor.mensagem = mensagem;
+	}
 
-	
 }

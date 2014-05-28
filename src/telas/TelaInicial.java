@@ -30,65 +30,64 @@ public class TelaInicial extends JFrame {
 	private JPanel centro;
 	private JButton conectar;
 	private JComboBox<Object> selecaoDeEquipes;
-	
-	public TelaInicial(){
+
+	public TelaInicial() {
 		BorderLayout layoutTelaInicial = new BorderLayout();
-		this.setTitle(Informacoes.getNomedoprograma()+" "+Informacoes.getVersao());
+		this.setTitle(Informacoes.getNomedoprograma() + " "
+				+ Informacoes.getVersao());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(800,200);
+		this.setSize(800, 200);
 		this.setResizable(false);
 		this.add(Titulo(), layoutTelaInicial.NORTH);
 		this.add(Centro(), layoutTelaInicial.CENTER);
 		this.add(Rodape(), layoutTelaInicial.SOUTH);
 		this.setLocationRelativeTo(null);
-	
+
 	}
-	 
-	private JPanel Titulo(){ 
+
+	private JPanel Titulo() {
 		fonteTextoDoTitulo = new Font("Calibri", Font.PLAIN, 24);
 		titulo = new JPanel();
 		textoDoTitulo = new JLabel();
 		textoDoTitulo.setFont(fonteTextoDoTitulo);
 		textoDoTitulo.setText(Informacoes.getNomedoprograma());
-	    titulo.add(textoDoTitulo);
-	    return titulo;
+		titulo.add(textoDoTitulo);
+		return titulo;
 	}
-	
-	
+
 	private JPanel Centro() {
-			FlowLayout layoutCentro = new FlowLayout();
-			centro = new JPanel();
-			conectar = new JButton();
-			conectar.setText("Conectar");
-			conectar.addActionListener( new ActionListener() {  
-                public void actionPerformed(ActionEvent e) {
-               //aqui tambem abrir a porta do servidor, 
-               // olhar as industrias 
-                 ControladoraDeTelas.esconderTelaInicial();
-                 try {
+		FlowLayout layoutCentro = new FlowLayout();
+		centro = new JPanel();
+		conectar = new JButton();
+		conectar.setText("Conectar");
+		conectar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// aqui tambem abrir a porta do servidor,
+				// olhar as industrias
+				ControladoraDeTelas.esconderTelaInicial();
+				try {
 					ControladoraDeTelas.mostrarTelaPrincipal();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-                }  
-			});  
-			
-			centro.add(conectar, layoutCentro);
-			return centro;
-		}
-	
-	private JPanel Rodape(){
+			}
+		});
+
+		centro.add(conectar, layoutCentro);
+		return centro;
+	}
+
+	private JPanel Rodape() {
 		rodape = new JPanel();
 		textoRodape = new JTextField();
-		textoRodape.setText("Desenvolvido por : "+Informacoes.getDesenvolvedores());
+		textoRodape.setText("Desenvolvido por : "
+				+ Informacoes.getDesenvolvedores());
 		fonteTextoRodape = new Font("Calibri", Font.PLAIN, 12);
 		textoRodape.setFont(fonteTextoRodape);
 		textoRodape.setEditable(false);
 		rodape.add(textoRodape);
 		return rodape;
 	}
-	
-	
-	
+
 }
